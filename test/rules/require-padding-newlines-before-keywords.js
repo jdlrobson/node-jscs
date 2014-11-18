@@ -114,10 +114,10 @@ describe('rules/require-padding-newlines-before-keywords', function() {
             );
         });
 
-        it('should not report on first expression in a block', function() {
+        it('should not report when parameter inside a function', function() {
             assert(
                 checker.checkString(
-                    'function x() { return; }'
+                    'watchlist.on( "watch", function () {} );'
                 ).isEmpty()
             );
         });
