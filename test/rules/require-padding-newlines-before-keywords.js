@@ -122,6 +122,14 @@ describe('rules/require-padding-newlines-before-keywords', function() {
             );
         });
 
+        it('should not report when assigned to a variable', function() {
+            assert(
+                checker.checkString(
+                    ' Router.prototype.getPath = function () {};'
+                ).isEmpty()
+            );
+        });
+
         it('should not report when used inside closure', function() {
             assert(
                 checker.checkString(
