@@ -122,6 +122,14 @@ describe('rules/require-padding-newlines-before-keywords', function() {
             );
         });
 
+        it('should not report when used inside closure', function() {
+            assert(
+                checker.checkString(
+                    '( function ( $ ) {} )( jQuery );'
+                ).isEmpty()
+            );
+        });
+
         it('should report on matching return statement', function() {
             assert(
                 checker.checkString(
