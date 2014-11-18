@@ -104,6 +104,16 @@ describe('rules/require-padding-newlines-before-keywords', function() {
             });
         });
 
+        it('should not report in object definitions', function() {
+            assert(
+                checker.checkString(
+                    'var obj = {\n' +
+                    '  foo: function x() { return; }\n' +
+                    '};'
+                ).isEmpty()
+            );
+        });
+
         it('should not report on first expression in a block', function() {
             assert(
                 checker.checkString(
