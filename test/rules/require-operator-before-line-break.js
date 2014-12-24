@@ -65,4 +65,11 @@ describe('rules/require-operator-before-line-break', function() {
         checker.configure({ requireOperatorBeforeLineBreak: true });
         assert(checker.checkString('var err = "Cannot call " + modelName \n + " !";').getErrorCount() === 1);
     });
+    it('should report on a call expression', function() {
+        checker.configure({ requireOperatorBeforeLineBreak: true });
+        assert(checker.checkString('foo().then(function(theUser)\n' +
+            '{\treturn 1;\n' +
+            '}).then(doThingOne)\n' +
+            '\t\t.then(doThingTwo);').getErrorCount() === 1);
+    });
 });
